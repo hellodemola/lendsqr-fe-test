@@ -38,9 +38,8 @@ export default function RootLayout({
       <body>
         <div className="grid grid-2">
           <div>
-            <h1>Lendsqr</h1>
             <Image
-              src="/logo.png"
+              src="/lendsqr-logo.svg"
               alt="Lendsqr logo"
               width={100}
               height={100}
