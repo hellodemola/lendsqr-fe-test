@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../styling/globals.scss";
+import "../styling/auth.scss";
 import Image from "next/image";
 
 const avenirNext = localFont({
   src: [
+    {
+      path: "../fonts/AvenirNextLTPro-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
     {
       path: "../fonts/AvenirNextLTPro-Regular.otf",
       weight: "400",
@@ -36,16 +41,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={avenirNext.className}>
       <body>
-        <div className="grid grid-2">
-          <div>
+        <div className="logo-container">
+          <Image
+            src="/lendsqr-logo.svg"
+            alt="Lendsqr logo"
+            width={200}
+            height={50}
+          />
+        </div>
+        <div className="auth-container">
+          <div className="auth-col desktop">
             <Image
-              src="/lendsqr-logo.svg"
-              alt="Lendsqr logo"
-              width={100}
-              height={100}
+              src="/illustrations/login.svg"
+              alt="Lendsqr text"
+              width={700}
+              height={700}
             />
           </div>
-          <div className="">{children}</div>
+          <div className="auth-col auth-content">{children}</div>
         </div>
       </body>
     </html>

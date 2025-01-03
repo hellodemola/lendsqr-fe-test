@@ -1,0 +1,24 @@
+$breakpoints: (
+    xs: 480px,  // Extra small devices
+    sm: 768px,  // Small devices (tablets)
+    md: 1024px, // Medium devices (desktops)
+    lg: 1280px, // Large devices (large desktops)
+    xl: 1440px  // Extra large devices
+);
+
+@mixin respond-to($size) {
+    @if map-has-key($breakpoints, $size) {
+        @media (min-width: map-get($breakpoints, $size)) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint: #{$size}. Available breakpoints: #{map-keys($breakpoints)}.";
+    }
+}
+
+.desktop {
+    display: none;
+    @include respond-to(md) {
+        display: flex;
+    }
+}

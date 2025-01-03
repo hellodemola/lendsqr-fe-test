@@ -1,16 +1,11 @@
-import Link from "next/link";
+import { LoginForm } from "@/components/forms";
 
 export default function Login() {
   return (
     <div>
-      <h1>Welcome!</h1>
-      <p>Enter details to login.</p>
-      <form>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <Link href="/">Forget Pasword</Link>
-        <button>Login</button>
-      </form>
+      <h1 className="auth-heading">Welcome!</h1>
+      <p className="auth-subHeading">Enter details to login.</p>
+      <LoginForm />
     </div>
   );
 }

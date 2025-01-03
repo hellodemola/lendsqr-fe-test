@@ -1,0 +1,35 @@
+$headingSize: 2.5rem;
+$headingWeight: 700;
+$subHeadingSize: 1.25rem;
+$subHeadingWeight: 400;
+$regularSize: 0.875rem;
+
+.heading,
+.subHeading,
+.regular {
+    font-weight: 400;
+}
+
+.heading {
+    font-size: $headingSize;
+    line-height: 1.5rem;
+    font-weight: $headingWeight;
+}
+
+.subHeading {
+    font-size: $subHeadingSize;
+    line-height: 1rem;
+    font-weight: $subHeadingWeight;
+}
+
+.regular {
+    font-size: $regularSize;
+}
+
+.link {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 10%;
+    text-decoration: none;
+}
