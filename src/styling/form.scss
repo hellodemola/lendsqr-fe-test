@@ -1,19 +1,26 @@
 @use './typography.scss';
 @use './color.scss';
+@use './media.scss';
 
 input {
+
     display: block;
-    width: 447px;
-    height: 50px;
     padding: .2em 1em;
+    width: 350px;
+    min-width: 100%;
     margin: 2em 0;
     border-radius: 8px;
     font-weight: 400;
     font-size: typography.$regularSize;
     border: 2px solid rgba(84, 95, 125, 0.15);
     color: #545F7D;
+    height: 50px;
     &::placeholder {
         color: #545F7D;
+    }
+    
+    @include media.respond-to(md) {
+        width: 447px;
     }
 }
 

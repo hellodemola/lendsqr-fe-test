@@ -12,11 +12,14 @@
 }
 
 .auth-container {
-    @extend .grid;
-    @extend .grid-2;
-    @extend .justify-center;
-    @extend .align-center;
-    @extend .h-100;
+     display: block;
+    @include media.respond-to(md) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
 }
 
 .auth-col {
