@@ -47,6 +47,7 @@ export default function RootLayout({
             alt="Lendsqr logo"
             width={200}
             height={50}
+            priority={true}
           />
         </div>
         <div className="auth-container">
