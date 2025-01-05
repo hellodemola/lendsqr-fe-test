@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../styling/auth.scss";
+import { Work_Sans } from "next/font/google";
+import "../styling/global.scss";
 
 const avenirNext = localFont({
   src: [
@@ -27,6 +28,11 @@ const avenirNext = localFont({
   ],
 });
 
+export const work_sans = Work_Sans({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Lendsqr login page",
   description: "Login page for Lendsqr",
@@ -38,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={avenirNext.className}>
+    <html
+      lang="en"
+      className={`${avenirNext.className} ${work_sans.className}`}
+    >
       <body>{children}</body>
     </html>
   );

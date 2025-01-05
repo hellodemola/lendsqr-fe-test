@@ -1,9 +1,8 @@
-@use './grid.scss';
 @use './color.scss';
-@use './form.scss';
-@use './global.scss';
-@use './typography.scss';
 @use './media.scss';
+@use './grid.scss';
+@use './typography.scss';
+
 
 .logo-container {
     position: fixed;

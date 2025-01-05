@@ -1,3 +1,4 @@
+import BrandLogo from "@/components/common/brandLogo";
 import Image from "next/image";
 
 export default function AuthLayout({
@@ -8,13 +9,7 @@ export default function AuthLayout({
   return (
     <>
       <div className="logo-container">
-        <Image
-          src="/lendsqr-logo.svg"
-          alt="Lendsqr logo"
-          width={200}
-          height={50}
-          priority={true}
-        />
+        <BrandLogo />
       </div>
       <div className="auth-container">
         <div className="auth-col desktop">
