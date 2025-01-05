@@ -1,0 +1,48 @@
+$dropShadow: 0px 4px 4px rgba(84, 95, 125, 0.10);
+
+.table-container {
+    margin-top: 5em;
+    overflow: scroll;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: $dropShadow;
+    padding: 1em 2em;
+    font-family: "Work Sans", serif;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+
+    a {
+        color: #545F7D;
+        text-decoration: none;
+    }
+}
+
+th {
+    text-align: left;
+    padding: 1em 0;
+    text-transform: uppercase;
+    color: #545F7D;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+
+td {
+    padding: 2em 0;
+    color: #545F7D;
+    font-size: 14px;
+}
+
+tbody tr {
+    padding: 1em;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.10);
+    box-shadow: 0 2px 0 rgba(33, 63, 125, 0.10);
+
+    &:last-child {
+        border-bottom: none;
+        box-shadow: none;
+    }
+}
