@@ -1,10 +1,10 @@
 @use './grid.scss';
 @use './color.scss';
-@use './form.scss';
+@use './form/form.scss';
 @use './typography.scss';
 @use './media.scss';
 @use './auth.scss';
-@use './dashboard.scss';
+@use './dashboard/index.scss';
 
 * {
     box-sizing: border-box;

@@ -1,3 +1,4 @@
+
 export const sidebarMenu = [
     {
         title: "customers",
@@ -6,43 +7,43 @@ export const sidebarMenu = [
         sub: [
             {
                 title: "users",
-                icon: "UsersIcon",
-                route: "users",
+                icon: "users.svg",
+                route: "/dashboard/users",
             },
             {
                 title: "guarantor",
-                icon: "GuarantorIcon",
-                route: "guarantor",
+                icon: "guarantor.svg",
+                route: "#",
             },
             {
                 title: "loans",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "loans.svg",
+                route: "#",
             },
             {
                 title: "decision models",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "decision.svg",
+                route: "#",
             },
             {
                 title: "savings",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "savings.svg",
+                route: "#",
             },
             {
                 title: "loan requests",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "loan-requests.svg",
+                route: "#",
             },
             {
                 title: "whitelist",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "whitelist.svg",
+                route: "#",
             },
             {
                 title: "karma",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "karma.svg",
+                route: "#",
             },
         ],
     },
@@ -53,48 +54,48 @@ export const sidebarMenu = [
         sub: [
             {
                 title: "organization",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "organization.svg",
+                route: "#",
             },
             {
                 title: "loan products",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "loans.svg",
+                route: "#",
             },
             {
                 title: "savings products",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "saving-product.svg",
+                route: "#",
             },
             {
                 title: "fees and charges",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "fees.svg",
+                route: "#",
             },
             {
                 title: "transactions",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "transactions.svg",
+                route: "#",
             },
             {
                 title: "services",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "services.svg",
+                route: "#",
             },
             {
                 title: "service account",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "service-account.svg",
+                route: "#",
             },
             {
                 title: "settlements",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "settlement.svg",
+                route: "#",
             },
             {
                 title: "reports",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "reports.svg",
+                route: "#",
             },
         ],
     },
@@ -105,18 +106,18 @@ export const sidebarMenu = [
         sub: [
             {
                 title: "preferences",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "preference.svg",
+                route: "#",
             },
             {
                 title: "fees and pricing",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "pricing.svg",
+                route: "#",
             },
             {
                 title: "audit logs",
-                icon: "LoanIcon",
-                route: "loans",
+                icon: "audit.svg",
+                route: "#",
             },
         ],
     }

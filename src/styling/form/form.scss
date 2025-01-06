@@ -1,0 +1,13 @@
+@use '../typography.scss';
+@use './input.scss';
+@use './button.scss';
+@use '../color.scss';
+
+form {
+    margin: 3em 0;
+}
+
+.search-container {
+    display: flex;
+    position: relative;
+}

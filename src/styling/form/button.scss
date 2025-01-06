@@ -1,0 +1,57 @@
+.primary-button {
+    background-color: #39CDCC;
+    color: white;
+    width: 100%;
+    height: 48px;
+    border: none;
+    display: block;
+    margin: 2em 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 10%;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+button {
+    @extend .primary-button;
+}
+
+.invicisble-button {
+    background: none;
+    border: none;
+    color: inherit;
+    text-transform: capitalize;
+}
+
+.dropdown-button {
+    @extend .invicisble-button;
+    display: flex;
+    gap: 6;
+    align-content: center;
+    font-family: 'Work sans', serif;
+    text-transform: capitalize;
+    font-size: 1rem;
+    margin-top: 0;
+    font-weight: 400;
+    margin-bottom: 1.5em;
+    padding: 0 2em;
+}
+
+.search-button {
+    background-color: #39CDCC;
+    width:56px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

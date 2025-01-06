@@ -6,12 +6,20 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .flex {
   display: flex;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .align-center {
@@ -32,4 +40,12 @@
 
 .gap-6 {
   gap: 6;
+}
+
+.relative {
+  position: relative;
+}
+
+.block {
+  display: block;
 }

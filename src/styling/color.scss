@@ -1,11 +1,19 @@
 $darkBlue: #213F7D;
+$lightBlue: #1B3773;
 $grey: #545F7D;
 $teal: #39CDCC;
+$white: #fff;
+$yellow: #E9B200;
+$red: rgba(228, 3, 59, 1);
+$green: rgba(57, 205, 98, 1);
+
 
 $colors: (
     blue: $darkBlue,
     grey: $grey,
     green: $teal,
+    white: $white,
+    lightBlue: $lightBlue,
     );
     
     @each $color, $value in $colors {
@@ -17,4 +25,10 @@ $colors: (
             background-color: $value;
         }
     }
-    
+
+// transparent colors        
+$brownTransparent: rgba(57, 205, 204, 0.1);
+$blueTransparent: rgba(33, 63, 125, 0.10);
+$lightBlueTransparent: rgba(84, 95, 125, 0.10);
+$darkBlueTransparent: rgba(33, 36, 125, 0.4);
+$grayTransparent: rgba(84, 95, 125, 0.15);
