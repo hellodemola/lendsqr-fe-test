@@ -3,48 +3,14 @@
 @use './navbar.scss';
 @use '../color.scss';
 
-$dashboard-height: 100vh;
 $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 
 .dashboard-container {
-  height: $dashboard-height;
   font-family: "Work Sans", serif;
 }
 
-/** status **/
-
-.status {
-  background-color: rgba(84, 95, 125, 0.1);
-  color: color.$lightBlue;
-  padding: 1em 2em;
-  border-radius: 2em;
-  text-transform: capitalize;
-
-  &.pending {
-    background-color: rgba(233, 178, 0, 0.1);
-    color: color.$yellow;
-  }
-
-  &.blacklisted {
-    background-color: rgba(228, 3, 59, 0.1);
-    color: color.$red;
-  }
-
-  &.active {
-    background-color: rgba(57, 205, 98, 0.1);
-    color: color.$green;
-  }
-}
-
-/**
-
-    DASHBOARD CONTENT
-
-**/
-
 .dashboard-content {
-  background-color: #FBFBFB;
-  height: $dashboard-height;
+  background-color: color.$offwhite;
   margin-top: 5em;
   margin-left: 300px;
   padding: 3em;
@@ -52,12 +18,14 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 }
 
 .dashboard-heading {
+  margin-bottom: 2em;
+}
+
+.dashboard-heading h1 {
   font-weight: 500;
   color: color.$lightBlue;
   font-size: 1.5rem;
 }
-
-
 
 /** CARDS **/
 .cards {
@@ -68,11 +36,12 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 
 .card {
   box-shadow: $dropShadow; 
-  background-color: #FFF;
+  background-color: color.$white;
   padding: 2em;
+  margin: 1em 0;
 
   h2 {
-    color: #545F7D;
+    color: color.$grey;
     font-weight: 500;
     font-family: "Work Sans", serif;
     text-transform: uppercase;
@@ -80,9 +49,9 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
   }
 
   p {
-    color: #213F7D;
+    color: color.$darkBlue;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1.5%;
   }
 }
@@ -118,5 +87,39 @@ border-bottom: 1px solid rgba(33, 63, 125, 0.10);
 &:last-child {
   border-bottom: none;
 }
+}
+
+/** status **/
+
+.status {
+  background-color: rgba(84, 95, 125, 0.1);
+  color: color.$lightBlue;
+  padding: 1em 2em;
+  border-radius: 2em;
+  text-transform: capitalize;
+
+  &.pending {
+    background-color: rgba(233, 178, 0, 0.1);
+    color: color.$yellow;
+  }
+
+  &.blacklisted {
+    background-color: rgba(228, 3, 59, 0.1);
+    color: color.$red;
+  }
+
+  &.blocked {
+    @extend .blacklisted;
+  }
+
+  &.active {
+    background-color: rgba(57, 205, 98, 0.1);
+    color: color.$green;
+  }
+
+  &.active {
+    background-color: rgba(57, 205, 98, 0.1);
+    color: color.$green;
+  }
 }
 

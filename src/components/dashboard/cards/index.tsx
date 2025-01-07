@@ -1,4 +1,5 @@
 import { formatNumbers } from "@/utils/converters/numbers.convert";
+import Image from "next/image";
 
 interface CardsProps {
   icon?: string;
@@ -6,10 +7,19 @@ interface CardsProps {
   number: number;
 }
 
-export default function Cards({ label, number, icon = "icon" }: CardsProps) {
+export default function Cards({
+  label,
+  number,
+  icon = "profile.svg",
+}: CardsProps) {
   return (
     <div id="card" className="card">
-      <i>{icon}</i>
+      <Image
+        width={35}
+        height={35}
+        alt=""
+        src={`/icons/${icon || "profile.svg"}`}
+      />
       <h2>{label}</h2>
       <p>{formatNumbers(number)}</p>
     </div>

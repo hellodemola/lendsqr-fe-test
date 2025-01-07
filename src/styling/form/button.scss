@@ -1,6 +1,10 @@
+@use '../color.scss';
+
+$font-family: 'Work sans', serif;
+
 .primary-button {
-    background-color: #39CDCC;
-    color: white;
+    background-color: color.$teal;
+    color: color.$white;
     width: 100%;
     height: 48px;
     border: none;
@@ -25,7 +29,7 @@ button {
     @extend .primary-button;
 }
 
-.invicisble-button {
+.invisible-button {
     background: none;
     border: none;
     color: inherit;
@@ -33,25 +37,44 @@ button {
 }
 
 .dropdown-button {
-    @extend .invicisble-button;
+    @extend .invisible-button;
     display: flex;
-    gap: 6;
+    gap: 6px;
     align-content: center;
-    font-family: 'Work sans', serif;
-    text-transform: capitalize;
+    font-family: $font-family;
     font-size: 1rem;
-    margin-top: 0;
+    margin: 0 0 1.5em 0;
     font-weight: 400;
-    margin-bottom: 1.5em;
     padding: 0 2em;
 }
 
 .search-button {
-    background-color: #39CDCC;
-    width:56px;
+    background-color: color.$teal;
+    width: 56px;
     height: 40px;
     position: absolute;
     right: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.pagination-button {
+    @extend .invisible-button;
+    color: color.$darkBlueTransparent;
+    height: inherit;
+}
+
+.pagination-arrow-button {
+    @extend .invisible-button;
+    background-color: color.$blueTransparent;
+    height: inherit;
+    padding: 0.5em;
+
+    &:disabled {
+        background-color: color.$blueTransparent;
+    }
+}
+
+.active-page-button {
+    color: color.$grey;
 }
