@@ -2,7 +2,6 @@ const DASHBOARD_URL = "/dashboard"
 
 export function urlContainsItem(url: string, item: string): boolean {
     if (item === DASHBOARD_URL) return false;
-    console.log({item})
     return url.includes(item);
 }
 

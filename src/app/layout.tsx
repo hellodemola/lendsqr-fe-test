@@ -28,12 +28,11 @@ const avenirNext = localFont({
   ],
 });
 
-export const work_sans = Work_Sans({
+const workSans = Work_Sans({
   subsets: ["latin"],
-  display: "swap",
 });
 
-export const roboto = Roboto({
+const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
   weight: "400",
@@ -52,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${avenirNext.className} ${work_sans.className}`}
+      className={`${avenirNext.className} ${workSans.className} ${roboto.className}`}
     >
       <body>{children}</body>
     </html>

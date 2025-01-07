@@ -3,6 +3,5 @@ import mockedUsers from '../../../utils/mockData/users.json';
 
 
 export async function GET() {
-  console.log({mockedUsers})
   return NextResponse.json(mockedUsers);
 }

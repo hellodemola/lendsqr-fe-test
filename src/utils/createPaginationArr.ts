@@ -13,7 +13,7 @@ export default function createPaginationArray(
     }
   
     // Add ellipsis and last page if necessary
-    if (pagination[pagination.length - 1] < totalPages - 1) {
+    if ((pagination[pagination.length - 1] as number) < totalPages - 1) {
       pagination.push('...');
       pagination.push(totalPages);
     } else if (pagination[pagination.length - 1] !== totalPages) {
