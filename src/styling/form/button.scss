@@ -25,6 +25,17 @@ $font-family: 'Work sans', serif;
     }
 }
 
+.outline {
+    background-color: color.$white;
+    border: 1px solid color.$darkBlue;
+    color: color.$darkBlue;
+}
+
+.outline-danger {
+    border: 1px solid color.$red;
+    color: color.$red;
+}
+
 button {
     @extend .primary-button;
 }
@@ -58,6 +69,11 @@ button {
     border-bottom-left-radius: 0;
 }
 
+.cta-status button {
+    width: 12em;
+    font-weight: 500;
+}
+
 .pagination-button {
     @extend .invisible-button;
     color: color.$darkBlueTransparent;
@@ -83,4 +99,8 @@ button {
     @extend .invisible-button;
     margin: 0;
     padding: 0;
+}
+
+.inner-form button {
+    margin: 0.5em 0;
 }

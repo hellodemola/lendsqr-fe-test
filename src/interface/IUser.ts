@@ -1,5 +1,12 @@
 export type TStatus = 'blocked' | 'active' | 'inactive' | 'pending'
 
+export const userStatus: TStatus[] = ['blocked', 'active', 'inactive', 'pending']
+
+export interface IOrganization {
+    name: string;
+    address: string;
+    phone_number: string;
+}
 
 export default interface IUserResp {
   personal_information: {
@@ -16,11 +23,7 @@ export default interface IUserResp {
     status: string;
     username: string;
   };
-  organization: Array<{
-    name: string;
-    address: string;
-    phone_number: string;
-  }>;
+  organization: Array<IOrganization>;
   education_and_employment: {
     level_of_education: string;
     employment_status: string;

@@ -18,7 +18,6 @@ async function initializeDB() {
 // Add a user to the database
 export async function addUser(user: IUserResp) {
   const db = await initializeDB();
-  console.log({user})
   await db.put(STORE_NAME, user);
 }
 

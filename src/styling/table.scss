@@ -50,7 +50,6 @@ tbody tr {
 
 .table-menu {
     position: absolute;
-
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -61,6 +60,13 @@ tbody tr {
     color: color.$grey;
     font-weight: 500;
     font-size: 14px;
+}
+
+.table-filter {
+    @extend .table-menu;
+    top: 0;
+    right: -30em;
+    padding: 0 2em;
 }
 
 .table-menu-item {
