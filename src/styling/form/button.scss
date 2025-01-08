@@ -78,3 +78,9 @@ button {
 .active-page-button {
     color: color.$grey;
 }
+
+.table-status-button {
+    @extend .invisible-button;
+    margin: 0;
+    padding: 0;
+}
