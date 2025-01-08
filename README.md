@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lendsqr Lenders merchant Dashboard
 
-## Getting Started
+A simple NextJs application displaying login authentication screen, user dashboard, user detail page from the assessment Figma designs. The application is designed to be responsive and is styled using SCSS.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- NextJs
+- Typescript
+- SCSS
+- Vitest
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## External Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **idb:** A react wrapper for indexedDB 
+- **react hook form:** Used form formatting.
+- **husky:** Used for precommit.
+- **Vitest:** Used for testing.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Considerations
 
-## Learn More
+### Mocked server is in NextJs Api route
 
-To learn more about Next.js, take a look at the following resources:
+The user data is mocked and file is stored in the application. And the mocked data is called with NextJs Api feature using fetch in the application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How to Run
 
-## Deploy on Vercel
+1. Clone the repository: `git clone https://github.com/hellodemola/lendsqr-fe-test`
+2. Navigate to the project folder: `cd lendsqr-fe-test`
+3. Install dependencies: `npm install`
+4. Run the application: `npm run dev`
+5. Open your browser and visit `http://localhost:3000/`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to Run Test
+1. Navigate to the project folder: `cd lendsqr-fe-test` 
+2. Run `npm run test`
+3. Test would run in the terminal
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Submission
+
+- [GitHub Repository](https://github.com/hellodemola/lendsqr-fe-test)
+- [Live Demo](https://ademola-onasoga-lendsqr-fe-test.vercel.app/)
+- [Documentation]('/')
+- [Video Presentation]('/')
