@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../styling/auth.scss";
-import Image from "next/image";
+import { Work_Sans, Roboto } from "next/font/google";
+import "../styling/global.scss";
 
 const avenirNext = localFont({
   src: [
@@ -28,6 +28,16 @@ const avenirNext = localFont({
   ],
 });
 
+const workSans = Work_Sans({
+  subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Lendsqr login page",
   description: "Login page for Lendsqr",
@@ -39,29 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={avenirNext.className}>
-      <body>
-        <div className="logo-container">
-          <Image
-            src="/lendsqr-logo.svg"
-            alt="Lendsqr logo"
-            width={200}
-            height={50}
-            priority={true}
-          />
-        </div>
-        <div className="auth-container">
-          <div className="auth-col desktop">
-            <Image
-              src="/illustrations/login.svg"
-              alt="Lendsqr text"
-              width={700}
-              height={700}
-            />
-          </div>
-          <div className="auth-col auth-content">{children}</div>
-        </div>
-      </body>
+    <html
+      lang="en"
+      className={`${avenirNext.className} ${workSans.className} ${roboto.className}`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

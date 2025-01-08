@@ -27,7 +27,7 @@ export default function LoginForm() {
 
   const handleLogin = (data: FieldValue<handleLoginProps>) => {
     console.log({ data });
-    return router.push("/");
+    router.push("/dashboard/users");
   };
 
   return (

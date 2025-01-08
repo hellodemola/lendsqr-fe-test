@@ -1,0 +1,53 @@
+@use '../color.scss';
+@use '../typography.scss';
+@use '../media.scss';
+
+input {
+    display: block;
+    padding: .2em 1em;
+    width: 350px;
+    min-width: 100%;
+    margin: 2em 0;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: typography.$regularSize;
+    border: 2px solid color.$grayTransparent;
+    color: color.$grey;
+    height: 50px;
+    &::placeholder {
+        color: color.$grey;
+    }
+    
+    @include media.respond-to(md) {
+        width: 447px;
+    }
+}
+
+.error-message {
+    color: color.$red;
+    margin-top: -1em;
+}
+
+.search-input {
+    height: 40px;
+    border: 1px solid color.$blueTransparent;
+    color: color.$darkBlue;
+    font-family: 'Work Sans', serif;
+    font-size: 14px;
+
+    &:focus {
+        outline: 1px solid color.$teal;
+    }
+
+    &::placeholder {
+        color: color.$darkBlueTransparent;
+    }
+
+}
+
+.paginate-select{
+    padding: 0.5em 1em;
+    border: none;
+    background-color: color.$blueTransparent;
+    color: color.$darkBlue;
+}

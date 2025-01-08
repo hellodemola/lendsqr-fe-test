@@ -1,9 +1,8 @@
-@use './grid.scss';
 @use './color.scss';
-@use './form.scss';
-@use './global.scss';
-@use './typography.scss';
 @use './media.scss';
+@use './grid.scss';
+@use './typography.scss';
+
 
 .logo-container {
     position: fixed;
@@ -13,12 +12,21 @@
 
 .auth-container {
      display: block;
+     font-family: 'avenir next';
     @include media.respond-to(md) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         justify-content: center;
         align-items: center;
         height: 100%;
+    }
+
+    input {
+        font-family: 'avenir next';
+    }
+
+    button {
+        font-family: 'avenir next';
     }
 }
 

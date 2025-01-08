@@ -1,0 +1,46 @@
+@use '../color.scss';
+
+.dashboard-navbar {
+    background-color: color.$white;
+    box-shadow: 0px 4px 4px color.$lightBlueTransparent;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    padding: 0 2em;
+    z-index: 1;
+  }
+  
+  .dashboard-navbar input {
+    min-width: 4em;
+  }
+  
+  .dashboard-logo {
+    width: fit-content;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-items {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    color: color.$darkBlue;
+  
+    a {
+      font-family: 'Roboto', 'Work Sans', serif;
+      font-size: 1rem;
+      color: color.$darkBlue
+    }
+  
+    p {
+      font-family: "Work Sans", serif;
+      font-weight: 500;
+    }
+  }

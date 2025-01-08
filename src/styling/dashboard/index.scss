@@ -1,0 +1,125 @@
+@use '../table.scss';
+@use './sidebar.scss';
+@use './navbar.scss';
+@use '../color.scss';
+
+$dropShadow: 0px 4px 4px color.$lightBlueTransparent;
+
+.dashboard-container {
+  font-family: "Work Sans", serif;
+}
+
+.dashboard-content {
+  background-color: color.$offwhite;
+  margin-top: 5em;
+  margin-left: 300px;
+  padding: 3em;
+  position: relative;
+}
+
+.dashboard-heading {
+  margin-bottom: 2em;
+}
+
+.dashboard-heading h1 {
+  font-weight: 500;
+  color: color.$lightBlue;
+  font-size: 1.5rem;
+}
+
+/** CARDS **/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em;
+}
+
+.card {
+  box-shadow: $dropShadow; 
+  background-color: color.$white;
+  padding: 2em;
+  margin: 1em 0;
+
+  h2 {
+    color: color.$grey;
+    font-weight: 500;
+    font-family: "Work Sans", serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  p {
+    color: color.$darkBlue;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5%;
+  }
+}
+
+/** PROFILE  **/
+.profile-container {
+  margin-top: 5em;
+  overflow: scroll;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: $dropShadow;
+  padding: 1em 2em;
+  font-family: "Work Sans", serif;
+}
+
+.profile-menu {
+display: flex;
+justify-content: space-between;
+gap: 1em;
+
+button {
+  border-bottom: 1px solid #213F7D;
+  border-radius: 0;
+  width: fit-content;
+}
+
+}
+
+.profile-section {
+padding: 1em 0;
+border-bottom: 1px solid rgba(33, 63, 125, 0.10);
+
+&:last-child {
+  border-bottom: none;
+}
+}
+
+/** status **/
+
+.status {
+  background-color: rgba(84, 95, 125, 0.1);
+  color: color.$lightBlue;
+  padding: 1em 2em;
+  border-radius: 2em;
+  text-transform: capitalize;
+
+  &.pending {
+    background-color: rgba(233, 178, 0, 0.1);
+    color: color.$yellow;
+  }
+
+  &.blacklisted {
+    background-color: rgba(228, 3, 59, 0.1);
+    color: color.$red;
+  }
+
+  &.blocked {
+    @extend .blacklisted;
+  }
+
+  &.active {
+    background-color: rgba(57, 205, 98, 0.1);
+    color: color.$green;
+  }
+
+  &.active {
+    background-color: rgba(57, 205, 98, 0.1);
+    color: color.$green;
+  }
+}
+
