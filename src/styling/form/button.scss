@@ -25,6 +25,12 @@ $font-family: 'Work sans', serif;
     }
 }
 
+.outline {
+    background-color: color.$white;
+    border: 1px solid color.$darkBlue;
+    color: color.$darkBlue;
+}
+
 button {
     @extend .primary-button;
 }
@@ -83,4 +89,8 @@ button {
     @extend .invisible-button;
     margin: 0;
     padding: 0;
+}
+
+.inner-form button {
+    margin: 0.5em 0;
 }

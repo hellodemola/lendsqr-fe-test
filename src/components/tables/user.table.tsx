@@ -3,6 +3,8 @@ import { addUser } from "@/utils/indexedDBHelper";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import UserFilter from "../forms/userFilter.form";
+import { IFilterUserProps } from "@/interface/IFilterUser";
 
 const headings = [
   "organizations",
@@ -13,14 +15,21 @@ const headings = [
   "status",
 ];
 
-const statusOption = [
+export const statusOption = [
   { id: 1, label: "view details", icon: "eye.svg" },
   { id: 2, label: "blacklist user", icon: "lock-user.svg" },
   { id: 4, label: "activate user", icon: "activate-user.svg" },
 ];
 
-export default function UserTable({ users }: { users: IUserResp[] }) {
+export default function UserTable({
+  users,
+  handleFilter,
+}: {
+  users: IUserResp[];
+  handleFilter: (e: IFilterUserProps) => void;
+}) {
   const [isShowMenu, setIsShowMenu] = useState<boolean>();
+  const [isFilterMenu, setIsFilterMenu] = useState(false);
   const [menuId, setMenuId] = useState<string>();
 
   const router = useRouter();
@@ -55,7 +64,11 @@ export default function UserTable({ users }: { users: IUserResp[] }) {
       <thead>
         <tr>
           {headings.map((heading, index) => (
-            <th className="" key={index}>
+            <th
+              className=""
+              key={index}
+              onClick={() => setIsFilterMenu(!isFilterMenu)}
+            >
               <div className="flex gap">
                 {heading}{" "}
                 <Image
@@ -73,8 +86,18 @@ export default function UserTable({ users }: { users: IUserResp[] }) {
         {users?.length > 0 &&
           users.map((user: IUserResp, index) => (
             <tr key={index}>
-              <td>{user?.personal_information?.full_name}</td>
-              <td>{user?.personal_information?.full_name}</td>
+              <td className="relative">
+                {user?.organization[0]?.name}
+                {index === 0 && isFilterMenu && (
+                  <div className="table-filter">
+                    <UserFilter
+                      handleFilter={handleFilter}
+                      hidePopup={setIsFilterMenu}
+                    />
+                  </div>
+                )}
+              </td>
+              <td>{user?.personal_information?.username}</td>
               <td>
                 <a href={`mailto:${user?.personal_information?.email_address}`}>
                   {user?.personal_information?.email_address}

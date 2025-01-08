@@ -45,9 +45,32 @@ input {
 
 }
 
+.inner-form  {
+    input {
+        margin: 0 0 1em 0;
+        width: 270px;
+
+        &::placeholder{
+            text-transform: capitalize;
+            color: color.$grey;
+        }
+    }
+
+    p{
+        font-weight: 500;
+        color: color.$grey;
+        font-weight: 0.875rem;
+    }
+}
+
+.form-select {
+    @extend input;
+}
+
 .paginate-select{
     padding: 0.5em 1em;
     border: none;
     background-color: color.$blueTransparent;
     color: color.$darkBlue;
+    text-transform: capitalize;
 }
