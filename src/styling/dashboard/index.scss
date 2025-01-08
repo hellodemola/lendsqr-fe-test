@@ -58,19 +58,40 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 
 /** PROFILE  **/
 .profile-container {
-  margin-top: 5em;
+  margin-top: 1.5em;
   overflow: scroll;
   background-color: white;
   border-radius: 4px;
   box-shadow: $dropShadow;
-  padding: 1em 2em;
+  padding: 2em;
   font-family: "Work Sans", serif;
+}
+
+.profile-container h2 {
+  font-weight: 500;
+  color: color.$lightBlue;
+  font-size: 22px;
+  line-height: 0.3em;
+}
+
+.profile-container h3 {
+  color: color.$grey;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.small-text {
+  color: color.$lightBlue;
+  font-size: 12px;
 }
 
 .profile-menu {
 display: flex;
 justify-content: space-between;
 gap: 1em;
+margin-top: 4em;
+color: #000;
 
 button {
   border-bottom: 1px solid #213F7D;
@@ -81,12 +102,36 @@ button {
 }
 
 .profile-section {
-padding: 1em 0;
+padding: 2em 0;
 border-bottom: 1px solid rgba(33, 63, 125, 0.10);
+font-family: 'Work Sans';
 
 &:last-child {
   border-bottom: none;
 }
+}
+
+.profile-section h3 {
+  color: color.$lightBlue;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.profile-section h4 {
+  color: color.$grey;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 0.1em;
+}
+
+.profile-section p {
+  font-weight: 500;
+  color: color.$grey;
+}
+
+.hidden {
+  display: none;
 }
 
 /** status **/
@@ -121,5 +166,15 @@ border-bottom: 1px solid rgba(33, 63, 125, 0.10);
     background-color: rgba(57, 205, 98, 0.1);
     color: color.$green;
   }
+}
+
+.back-container {
+  display: flex;
+  align-content: center;
+  gap: 6;
+    text-decoration: none;
+    color: color.$grey;
+    font-size: 1rem;
+  
 }
 
