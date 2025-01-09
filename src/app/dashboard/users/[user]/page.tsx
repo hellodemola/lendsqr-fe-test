@@ -7,10 +7,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Personal from "../../../../components/dashboard/profileUsers/personal";
+import UserDocuments from "../../../../components/dashboard/profileUsers/documents";
+import BankDetails from "@/components/dashboard/profileUsers/bankDetails";
+import LoanDetails from "@/components/dashboard/profileUsers/loanDetails";
+import SavingDetails from "@/components/dashboard/profileUsers/savingDetails";
+import AppDetails from "@/components/dashboard/profileUsers/appDetails";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as Stars } from "@fortawesome/free-regular-svg-icons";
+
+const userTabMenu = [
+  { id: "general_details", label: "general details" },
+  { id: "documents", label: "documents" },
+  { id: "bank_details", label: "bank details" },
+  { id: "loans", label: "loans" },
+  { id: "savings", label: "savings" },
+  { id: "app_and_system", label: "app and system" },
+];
 
 export default function User() {
   const searchParams = useParams();
   const [currentUser, setCurrentUser] = useState<IUserResp | undefined>();
+  const [activeBar, setActiveBar] = useState<string>(userTabMenu[0].id);
+
+  const handleUpdateLink = (id: string) => {
+    setActiveBar(id);
+  };
 
   useEffect(() => {
     getSingleUser(searchParams.user as string, setCurrentUser);
@@ -33,7 +56,7 @@ export default function User() {
         <div className="dashboard-heading">
           <h1>User Details</h1>
         </div>
-        <div className="flex gap-6 cta-status">
+        <div className="flex gaps cta-status">
           <button className="outline outline-danger">Blacklist user</button>
           <button className="outline">Activate user</button>
         </div>
@@ -56,6 +79,10 @@ export default function User() {
             </div>
             <div>
               <h3>User’s Tier</h3>
+
+              <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
+              <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
+              <FontAwesomeIcon icon={Stars} style={{ color: "#E9B200" }} />
             </div>
             <div>
               <h2>
@@ -68,102 +95,44 @@ export default function User() {
               </p>
             </div>
           </div>
-          <div className="profile-menu">
-            <div className="invicisble-div">General Details</div>
-            <div className="invicisble-div">Documents</div>
-            <div className="invicisble-div">Bank details</div>
-            <div className="invicisble-div">Loans</div>
-            <div className="invicisble-div">Savings</div>
-            <div className="invicisble-div">App and systems</div>
+          <div className={`profile-menu`}>
+            {userTabMenu.map((e) => (
+              <div
+                onClick={() => handleUpdateLink(e.id)}
+                key={e.id}
+                className={`${
+                  activeBar === e.id && "active"
+                } invicisble-div capitalize profile-menu-item`}
+              >
+                {e.label}
+              </div>
+            ))}
           </div>
         </div>
         <div className="profile-container">
-          <div className="profile-section">
-            <h3>Personal information</h3>
-            <div className="grid grid-5 align-center w-100 gap-6">
-              <div>
-                <h4>Full name</h4>
-                <p>{currentUser?.personal_information?.full_name}</p>
-              </div>
-              <div>
-                <h4>Phone number</h4>
-                <p>{currentUser?.personal_information?.phone_number}</p>
-              </div>
+          {currentUser && (
+            <div>
+              {activeBar === userTabMenu[0].id && (
+                <Personal currentUser={currentUser} />
+              )}
+              {activeBar === userTabMenu[1].id && (
+                <UserDocuments currentUser={currentUser} />
+              )}
+              {activeBar === userTabMenu[2].id && (
+                <BankDetails currentUser={currentUser} />
+              )}
+              {activeBar === userTabMenu[3].id && (
+                <LoanDetails currentUser={currentUser} />
+              )}
+              {activeBar === userTabMenu[4].id && (
+                <SavingDetails currentUser={currentUser} />
+              )}
 
-              <div>
-                <h4>Email Address</h4>
-                <p>{currentUser?.personal_information?.email_address}</p>
-              </div>
-
-              <div>
-                <h4>BVN</h4>
-                <p>{currentUser?.personal_information?.bvn}</p>
-              </div>
-
-              <div>
-                <h4>Gender</h4>
-                <p>{currentUser?.personal_information?.gender}</p>
-              </div>
-
-              <div>
-                <h4>marital status</h4>
-                <p>{currentUser?.personal_information?.marital_status}</p>
-              </div>
-
-              <div>
-                <h4>children</h4>
-                <p>{currentUser?.personal_information?.children}</p>
-              </div>
-
-              <div>
-                <h4>type of residence</h4>
-                <p>{currentUser?.personal_information?.type_of_residence}</p>
-              </div>
+              {activeBar === userTabMenu[5].id && (
+                <AppDetails currentUser={currentUser} />
+              )}
             </div>
-          </div>
-          <div className="profile-section hidden">
-            <h3>Education and Employment</h3>
-            <div className="grid grid-5 align-center w-100 gap-6">
-              <div>
-                <h4>Full name</h4>
-                <p>Grace Effiom</p>
-              </div>
-              <div>
-                <h4>Phone number</h4>
-                <p>07060780922</p>
-              </div>
-
-              <div>
-                <h4>Email Address</h4>
-                <p>grace@gmail.com</p>
-              </div>
-
-              <div>
-                <h4>BVN</h4>
-                <p>07060780922</p>
-              </div>
-
-              <div>
-                <h4>Gender</h4>
-                <p>Female</p>
-              </div>
-
-              <div>
-                <h4>marital status</h4>
-                <p>Single</p>
-              </div>
-
-              <div>
-                <h4>children</h4>
-                <p>none</p>
-              </div>
-
-              <div>
-                <h4>type of residence</h4>
-                <p>Parent’s Apartment</p>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

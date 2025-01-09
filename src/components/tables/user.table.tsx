@@ -45,8 +45,6 @@ export default function UserTable({
   };
 
   const handleStatusOption = async (id: string, actionId: number) => {
-    console.log({ id, actionId });
-
     if (actionId === 1) {
       const currentUser = users.find(
         (user) => user.personal_information.id === id
