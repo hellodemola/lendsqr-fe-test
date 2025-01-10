@@ -105,20 +105,28 @@ export default function MobileNav() {
                   )}
               {!menuSelected &&
                 sidebarMenu.map((menu, _) => (
-                  <div
-                    onClick={() => handleMenuSelected(menu.title)}
-                    className="invisible-button items"
-                    key={_}
-                  >
-                    <p>{menu.title}</p>
-                    <Image
-                      width={15}
-                      height={15}
-                      src="/icons/forward-arrow.svg"
-                      alt="users"
-                    />
-                  </div>
+                  <>
+                    <div
+                      onClick={() => handleMenuSelected(menu.title)}
+                      className="invisible-button items"
+                      key={_}
+                    >
+                      <p>{menu.title}</p>
+                      <Image
+                        width={15}
+                        height={15}
+                        src="/icons/forward-arrow.svg"
+                        alt="users"
+                      />
+                    </div>
+                  </>
                 ))}
+              <div
+                onClick={() => handleChangeRoute("/")}
+                className="flex align-center gaps"
+              >
+                <MenuItem icon="/icons/logout.svg" title="Logout" />
+              </div>
             </div>
           </div>
         </div>
