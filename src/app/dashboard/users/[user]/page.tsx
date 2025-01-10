@@ -39,6 +39,27 @@ export default function User() {
     getSingleUser(searchParams.user as string, setCurrentUser);
   }, [searchParams.user]);
 
+  if (!currentUser)
+    return (
+      <div>
+        <div>
+          <Link className="back-container" href="/dashboard/users">
+            <Image
+              width={20}
+              height={20}
+              alt="filter"
+              src="/icons/back-arrow.svg"
+            />
+            Back to users
+          </Link>
+        </div>
+        <div className="dashboard-heading">
+          <h1>User not found</h1>
+          <p>User with ID: {searchParams.user} not found.</p>
+        </div>
+      </div>
+    );
+
   return (
     <div className="">
       <div>
