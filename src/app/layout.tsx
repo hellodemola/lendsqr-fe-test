@@ -39,8 +39,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Lendsqr login page",
-  description: "Login page for Lendsqr",
+  title: "Lendsqr vendor Dashboard",
+  description: "Lendsqr | Ademola onasoga assessment",
 };
 
 export default function RootLayout({
