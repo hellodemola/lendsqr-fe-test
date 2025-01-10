@@ -3,6 +3,7 @@
 @use './grid.scss';
 @use './typography.scss';
 
+$avenir: 'Avenir Next', 'Work Sans';
 
 .logo-container {
     position: fixed;
@@ -12,7 +13,7 @@
 
 .auth-container {
      display: block;
-     font-family: 'avenir next';
+     font-family: $avenir;
     @include media.respond-to(md) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -22,11 +23,11 @@
     }
 
     input {
-        font-family: 'avenir next';
+        font-family: $avenir;
     }
 
     button {
-        font-family: 'avenir next';
+        font-family: $avenir;
     }
 }
 
@@ -39,6 +40,7 @@
 }
 
 .auth-content {
+    font-family: $avenir;
     box-shadow: 0px 4px 4px rgba(84, 95, 125, 0.10);
     background-color: white;
 }
