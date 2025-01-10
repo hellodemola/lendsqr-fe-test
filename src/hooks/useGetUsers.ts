@@ -1,9 +1,13 @@
 import { IFilterUserProps } from "@/interface/IFilterUser";
+import { IStats } from "@/interface/IStats";
 import IUserRes from "@/interface/IUser";
-import { saveCompany } from "@/utils/indexQueries";
+import getUserStatistics from "@/utils/getUserStatistics";
+import { saveCompany } from "@/utils/indexedDBQueries";
 import { useEffect, useMemo, useState } from "react";
 
 const userUrl = "/api/users";
+
+
 
 const useGetUsers = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -11,19 +15,30 @@ const useGetUsers = () => {
   const [totalPages, setTotalPage] = useState<number>(0);
   const [users, setUsers] = useState<IUserRes[]>([]);
   const [organizations, setOrganization] = useState<string []>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userStats, setUserStats] = useState<IStats>({
+    loanUsers: 0,
+    savingsUsers: 0,
+    activeUsers: 0,
+    allUsers: 0,
+  });
 
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(userUrl)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
         setTotalPage(Number(data?.length));
+        const stats = getUserStatistics(data);
+        setUserStats(stats);
       })
       .catch((error) => {
         setUsers([]);
         console.log(error);
-      });
+      })
+      .finally(() => setIsLoading(false))
   }, []);
 
   useMemo(() => {
@@ -59,7 +74,7 @@ const filteredData = users.filter(item => {
       ? item.personal_information.email_address === filterCriteria.email
       : true) &&
     (filterCriteria.username
-      ? item.personal_information.username === filterCriteria.username
+      ? item.personal_information.username.toLowerCase() === filterCriteria.username.toLocaleLowerCase()
       : true) &&
     (filterCriteria.date
       ? item.personal_information.joined_date === filterCriteria.date
@@ -80,7 +95,9 @@ setUsers(filteredData)
   return {
     users,
     organizations,
+    userStats,
     currentPageData,
+    isLoading,
     handleFilter,
     pagination: {
       handlePageChange,

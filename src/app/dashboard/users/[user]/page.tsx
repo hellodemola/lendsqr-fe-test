@@ -2,7 +2,6 @@
 
 import IUserResp from "@/interface/IUser";
 import { formatNumbers } from "@/utils/converters/numbers.convert";
-import { getSingleUser } from "@/utils/indexQueries";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -16,6 +15,7 @@ import AppDetails from "@/components/dashboard/profileUsers/appDetails";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as Stars } from "@fortawesome/free-regular-svg-icons";
+import { getSingleUser } from "@/utils/indexedDBQueries";
 
 const userTabMenu = [
   { id: "general_details", label: "general details" },
@@ -74,7 +74,7 @@ export default function User() {
               />
               <div>
                 <h2>{currentUser?.personal_information?.full_name}</h2>
-                <h3>{currentUser?.personal_information?.id}</h3>
+                <h3>@{currentUser?.personal_information?.username}</h3>
               </div>
             </div>
             <div>

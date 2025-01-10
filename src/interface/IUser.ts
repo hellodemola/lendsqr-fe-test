@@ -1,3 +1,5 @@
+import { IFilterUserProps } from "./IFilterUser";
+
 export type TStatus = 'blocked' | 'active' | 'inactive' | 'pending'
 
 export const userStatus: TStatus[] = ['blocked', 'active', 'inactive', 'pending']
@@ -79,4 +81,29 @@ export default interface IUserResp {
     app_version: string;
     notification_status: string;
   };
+}
+
+export interface CardsProps {
+  icon?: string;
+  label: string;
+  number: number;
+}
+
+export interface IUserTableProps {
+  users: IUserResp[];
+  handleFilter: (e: IFilterUserProps) => void;
+}
+
+export interface IDefaultValues {
+  organization: string;
+  email: string;
+  username: string;
+  date: string;
+  phone: string;
+  status: TStatus | undefined;
+}
+
+export interface hidePopupProps {
+  hidePopup: (e: boolean) => void;
+  handleFilter: (e: IFilterUserProps) => void;
 }

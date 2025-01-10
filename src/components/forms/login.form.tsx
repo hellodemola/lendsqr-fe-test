@@ -6,11 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "@/utils/schemaValidations/login.schema";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
-
-interface handleLoginProps {
-  email: string;
-  password: string;
-}
+import { handleLoginProps } from "@/interface/IAuth";
 
 export default function LoginForm() {
   const {
@@ -57,7 +53,11 @@ export default function LoginForm() {
       <Link href="/" className="auth-link">
         Forget Pasword?
       </Link>
-      <button disabled={isSubmitting || !isValid} type="submit">
+      <button
+        className="primary-button"
+        disabled={isSubmitting || !isValid}
+        type="submit"
+      >
         Log in
       </button>
     </form>
