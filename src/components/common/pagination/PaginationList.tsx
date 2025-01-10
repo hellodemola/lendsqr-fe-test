@@ -13,7 +13,8 @@ export default function PaginationList({
   const paginateArr = createPaginationArray(currentPage, pageNumbers);
 
   useEffect(() => {
-    setPageNumbers(totalPages / pageSize);
+    const avg = totalPages / pageSize;
+    setPageNumbers(Math.round(avg));
   }, [pageSize, totalPages]);
 
   return (
