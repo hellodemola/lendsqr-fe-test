@@ -20,7 +20,7 @@ describe("Login form", () => {
     expect(button).toBeDisabled();
   });
 
-  test("button should be not disabled when all required fields are filled", async () => {
+  test("button should be enabled when all required fields are filled", async () => {
     const user = userEvent.setup();
     render(<LoginForm />);
     const button = screen.getByRole("button", { name: /log in/i });
