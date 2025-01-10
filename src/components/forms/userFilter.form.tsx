@@ -1,33 +1,15 @@
 import { useEffect, useState } from "react";
 import { TextInput } from "../common/input";
-import { addFilter, ICompany } from "@/utils/indexedDBHelper";
-import { getCompanies } from "@/utils/indexQueries";
+import { ICompany } from "@/utils/indexedDBHelper";
 import { useForm } from "react-hook-form";
-import { TStatus, userStatus } from "@/interface/IUser";
-import { IFilterUserProps } from "@/interface/IFilterUser";
-
-export interface IDefaultValues {
-  organization: string;
-  email: string;
-  username: string;
-  date: string;
-  phone: string;
-  status: TStatus | undefined;
-}
-
-interface hidePopupProps {
-  hidePopup: (e: boolean) => void;
-  handleFilter: (e: IFilterUserProps) => void;
-}
-
-const defaultValues: IDefaultValues = {
-  organization: "",
-  email: "",
-  username: "",
-  date: "",
-  phone: "",
-  status: undefined,
-};
+import {
+  hidePopupProps,
+  IDefaultValues,
+  TStatus,
+  userStatus,
+} from "@/interface/IUser";
+import { getCompanies } from "@/utils/indexedDBQueries";
+import { defaultValues } from "@/utils/defaultValues/userFilter";
 
 export default function UserFilter({
   hidePopup,
@@ -41,14 +23,11 @@ export default function UserFilter({
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
-    defaultValues,
+    defaultValues: defaultValues,
   });
 
   const handleFilterUser = async (data: IDefaultValues) => {
-    // update filter obj in db
-    console.log({ data });
     handleFilter(data);
-    await addFilter(data);
     hidePopup(false);
   };
 
@@ -58,11 +37,15 @@ export default function UserFilter({
       {companies && (
         <select className="form-select" {...register("organization")}>
           {companies &&
-            companies?.data.map((e, _) => <option key={_}>{e}</option>)}
+            companies?.data.map((e, _) => (
+              <option className="capitalize" key={_}>
+                {e}
+              </option>
+            ))}
         </select>
       )}
       <p>Username</p>
-      <TextInput type="text" {...register("username")} placeholder="user" />
+      <TextInput type="text" {...register("username")} placeholder="username" />
       <p>Email</p>
       <TextInput type="email" {...register("email")} placeholder="email" />
       <p>Date</p>

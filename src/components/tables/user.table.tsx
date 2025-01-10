@@ -1,72 +1,30 @@
-import IUserResp from "@/interface/IUser";
-import { addUser } from "@/utils/indexedDBHelper";
+import IUserResp, { IUserTableProps } from "@/interface/IUser";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import UserFilter from "../forms/userFilter.form";
-import { IFilterUserProps } from "@/interface/IFilterUser";
+import { headings, statusOption } from "./userConfig";
+import useUserTableMenu from "@/hooks/useUserTableMenu";
+import useViewUser from "@/hooks/useViewUser";
+import useClickOutside from "@/hooks/useClickOutside";
 
-const headings = [
-  "organizations",
-  "username",
-  "email",
-  "phone number",
-  "date joined",
-  "status",
-];
-
-export const statusOption = [
-  { id: 1, label: "view details", icon: "eye.svg" },
-  { id: 2, label: "blacklist user", icon: "lock-user.svg" },
-  { id: 4, label: "activate user", icon: "activate-user.svg" },
-];
-
-export default function UserTable({
-  users,
-  handleFilter,
-}: {
-  users: IUserResp[];
-  handleFilter: (e: IFilterUserProps) => void;
-}) {
-  const [isShowMenu, setIsShowMenu] = useState<boolean>();
+export default function UserTable({ users, handleFilter }: IUserTableProps) {
+  const { isShowMenu, menuId, handleShowMenu, handleCloseMenu } =
+    useUserTableMenu();
+  const handleStatusOption = useViewUser(users);
   const [isFilterMenu, setIsFilterMenu] = useState(false);
-  const [menuId, setMenuId] = useState<string>();
 
-  const router = useRouter();
-
-  const handleShowMenu = (id: string) => {
-    setIsShowMenu(true);
-    setMenuId(id);
+  const handleFilterState = () => {
+    setIsFilterMenu(!isFilterMenu);
   };
 
-  const closeDropdown = () => {
-    setIsShowMenu(false);
-    setMenuId(undefined);
-  };
-
-  const handleStatusOption = async (id: string, actionId: number) => {
-    if (actionId === 1) {
-      const currentUser = users.find(
-        (user) => user.personal_information.id === id
-      );
-      if (currentUser) {
-        await addUser({ ...{ id }, ...currentUser });
-        return router.push(`users/${id}`);
-      }
-      alert("something went wrong!");
-    }
-  };
+  const popupRef = useClickOutside({ onClose: handleFilterState });
 
   return (
     <table>
       <thead>
         <tr>
           {headings.map((heading, index) => (
-            <th
-              className=""
-              key={index}
-              onClick={() => setIsFilterMenu(!isFilterMenu)}
-            >
+            <th className="" key={index} onClick={handleFilterState}>
               <div className="flex gap">
                 {heading}{" "}
                 <Image
@@ -82,79 +40,76 @@ export default function UserTable({
       </thead>
       <tbody>
         {users?.length > 0 &&
-          users.map((user: IUserResp, index) => (
-            <tr key={index}>
-              <td className="relative">
-                {user?.organization[0]?.name}
-                {index === 0 && isFilterMenu && (
-                  <div className="table-filter">
-                    <UserFilter
-                      handleFilter={handleFilter}
-                      hidePopup={setIsFilterMenu}
+          users.map((user: IUserResp, index) => {
+            const {
+              username,
+              email_address,
+              phone_number,
+              joined_date,
+              status,
+              id,
+            } = user?.personal_information;
+            return (
+              <tr key={index}>
+                <td className="relative capitalize">
+                  {user?.organization[0]?.name}
+                  {index === 0 && isFilterMenu && (
+                    <div ref={popupRef} className="table-filter">
+                      <UserFilter
+                        handleFilter={handleFilter}
+                        hidePopup={setIsFilterMenu}
+                      />
+                    </div>
+                  )}
+                </td>
+                <td>{username}</td>
+                <td>
+                  <a href={`mailto:${email_address}`}>{email_address}</a>
+                </td>
+                <td>
+                  <a href={`tel:${phone_number}`}>{phone_number}</a>
+                </td>
+                <td>{joined_date}</td>
+                <td>
+                  <span className={`status ${status}`}>
+                    {status === "blocked" ? "blacklisted" : status}
+                  </span>
+                </td>
+                <td className="relative">
+                  <button
+                    onClick={() => handleShowMenu(id)}
+                    className="table-status-button"
+                  >
+                    <Image
+                      width={20}
+                      height={20}
+                      alt="filter"
+                      src="/icons/more.svg"
                     />
-                  </div>
-                )}
-              </td>
-              <td>{user?.personal_information?.username}</td>
-              <td>
-                <a href={`mailto:${user?.personal_information?.email_address}`}>
-                  {user?.personal_information?.email_address}
-                </a>
-              </td>
-              <td>
-                <a href={`tel:${user?.personal_information?.phone_number}`}>
-                  {user?.personal_information?.phone_number}
-                </a>
-              </td>
-              <td>{user?.personal_information?.joined_date}</td>
-              <td>
-                <span
-                  className={`status ${user?.personal_information?.status}`}
-                >
-                  {user?.personal_information?.status === "blocked"
-                    ? "blacklisted"
-                    : user?.personal_information?.status}
-                </span>
-              </td>
-              <td className="relative">
-                <button
-                  onClick={() => handleShowMenu(user?.personal_information?.id)}
-                  className="table-status-button"
-                >
-                  <Image
-                    width={20}
-                    height={20}
-                    alt="filter"
-                    src="/icons/more.svg"
-                  />
-                </button>
-                {isShowMenu && menuId === user?.personal_information?.id && (
-                  <div onMouseLeave={closeDropdown} className="table-menu">
-                    {statusOption.map((e) => (
-                      <div
-                        onClick={() =>
-                          handleStatusOption(
-                            user?.personal_information?.id,
-                            e.id
-                          )
-                        }
-                        key={e.id}
-                        className="flex gap align-center table-menu-item"
-                      >
-                        <Image
-                          width={20}
-                          height={20}
-                          alt="filter"
-                          src={`/icons/${e.icon}`}
-                        />
-                        {e.label}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))}
+                  </button>
+                  {isShowMenu && menuId === id && (
+                    <div onMouseLeave={handleCloseMenu} className="table-menu">
+                      {statusOption.map((e) => (
+                        <div
+                          onClick={() => handleStatusOption(id, e.id)}
+                          key={e.id}
+                          className="flex gap align-center table-menu-item"
+                        >
+                          <Image
+                            width={20}
+                            height={20}
+                            alt="filter"
+                            src={`/icons/${e.icon}`}
+                          />
+                          {e.label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
       </tbody>
     </table>
   );
