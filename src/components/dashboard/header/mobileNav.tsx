@@ -32,7 +32,7 @@ export default function MobileNav() {
             onClick={() => handleChangeRoute("/dashboard")}
             className="flex align-center gaps"
           >
-            <BrandLogo />
+            <BrandLogo isMobile />
           </div>
         </div>
         <div className="flex right">
