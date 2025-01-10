@@ -40,9 +40,13 @@
 .sidebar-submenu-item {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    padding: 1em 0;
     gap: 0.8em;
-    padding: 1em 2em;
-    color: color.$darkBlueTransparent;
+    @include media.respond-to(lg) {
+        padding: 1em 2em;
+        color: color.$darkBlueTransparent;
+    }
 }
 
 .sidebar-submenu-item-active {
