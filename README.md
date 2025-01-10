@@ -70,5 +70,5 @@ bun test
 
 - [GitHub Repository](https://github.com/hellodemola/lendsqr-fe-test)
 - [Live Demo](https://ademola-onasoga-lendsqr-fe-test.vercel.app/)
-- [Documentation]('/')
+- [Documentation]('https://docs.google.com/document/d/1b1SdG38LazsFT0nIZvtRsmy81dIhjebn60XvevE1Lm4/edit?addon_store&tab=t.0')
 - [Video Presentation]('/')
