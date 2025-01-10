@@ -52,7 +52,7 @@ export default function User() {
           Back to users
         </Link>
       </div>
-      <div className="flex justify-between align-center">
+      <div className="dashboard-heading-grid">
         <div className="dashboard-heading">
           <h1>User Details</h1>
         </div>
@@ -64,7 +64,7 @@ export default function User() {
 
       <div className="dashboard-content-container">
         <div className="profile-container">
-          <div className="flex align-center large-gap">
+          <div className="user-profile-content">
             <div className="flex gaps align-center">
               <Image
                 width={100}
@@ -77,22 +77,24 @@ export default function User() {
                 <h3>@{currentUser?.personal_information?.username}</h3>
               </div>
             </div>
-            <div>
-              <h3>User’s Tier</h3>
+            <div className="user-profile-extra">
+              <div>
+                <h3>User’s Tier</h3>
 
-              <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
-              <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
-              <FontAwesomeIcon icon={Stars} style={{ color: "#E9B200" }} />
-            </div>
-            <div>
-              <h2>
-                &#8358;
-                {formatNumbers(currentUser?.savings?.savings_balance || 0)}
-              </h2>
-              <p className="small-text">
-                {currentUser?.bank_details?.account_number}/
-                {currentUser?.bank_details?.bank_name}
-              </p>
+                <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
+                <FontAwesomeIcon style={{ color: "#E9B200" }} icon={faStar} />
+                <FontAwesomeIcon icon={Stars} style={{ color: "#E9B200" }} />
+              </div>
+              <div>
+                <h2>
+                  &#8358;
+                  {formatNumbers(currentUser?.savings?.savings_balance || 0)}
+                </h2>
+                <p className="small-text">
+                  {currentUser?.bank_details?.account_number}/
+                  {currentUser?.bank_details?.bank_name}
+                </p>
+              </div>
             </div>
           </div>
           <div className={`profile-menu`}>

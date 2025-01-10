@@ -1,4 +1,5 @@
 @use './color.scss';
+@use './media.scss';
 
 .table-container {
     margin-top: 1.5em;
@@ -22,19 +23,25 @@ table {
 }
 
 th {
-    text-align: left;
-    padding: 1em 0;
+    padding: 2em 2em 2em 0;
     text-transform: uppercase;
+    text-align: left;
     color: color.$grey;
     font-weight: 500;
     font-size: 0.75rem;
+    @include media.respond-to(md) {
+        padding: 1em 0;
+    }
 }
 
 
 td {
-    padding: 2em 0;
+    padding: 2em 2em 2em 0;
     color: color.$grey;
     font-size: 0.875rem;
+    @include media.respond-to(md) {
+        padding: 2em 0;
+    }
 }
 
 tbody tr {
@@ -60,13 +67,18 @@ tbody tr {
     color: color.$grey;
     font-weight: 500;
     font-size: 14px;
+
 }
 
 .table-filter {
     @extend .table-menu;
     top: 0;
-    right: -30em;
+    left: 0;
     padding: 0 2em;
+    
+    @include media.respond-to(md) {
+        right: -30em;
+    }
 }
 
 .table-menu-item {
@@ -81,11 +93,18 @@ tbody tr {
 // Styles for the pagination component, including the container and individual pagination items
 
 .pagination-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    color: color.$grey;
+    display: block;
+    text-align: center;
+    margin-top: 2em;
+
+
+    @include media.respond-to(sm){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: color.$grey;
+    }
 }
 
 .pagination {

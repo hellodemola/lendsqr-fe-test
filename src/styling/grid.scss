@@ -1,3 +1,5 @@
+@use './media.scss';
+
 .grid {
   display: grid;
 }
@@ -7,7 +9,14 @@
 }
 
 .grid-5 {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  @include media.respond-to(md) {
+    gap: 2em 1em;
+    grid-template-columns: repeat(5, 1fr);
+
+  }
+
 }
 
 .flex {

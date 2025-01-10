@@ -10,7 +10,7 @@ export default function UserDocuments({
     <div id="personal">
       <div className="profile-section">
         <h3>Documents</h3>
-        <div className="grid grid-5 align-center w-100 large-gap">
+        <div className="grid grid-5 align-center w-100">
           <ProfileDetails
             title="Bank statement"
             text={currentUser?.documents?.bank_statement}

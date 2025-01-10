@@ -19,6 +19,8 @@ export default function UserTable({ users, handleFilter }: IUserTableProps) {
 
   const popupRef = useClickOutside({ onClose: handleFilterState });
 
+  const menuPopUpRef = useClickOutside({ onClose: handleCloseMenu });
+
   return (
     <table>
       <thead>
@@ -88,7 +90,11 @@ export default function UserTable({ users, handleFilter }: IUserTableProps) {
                     />
                   </button>
                   {isShowMenu && menuId === id && (
-                    <div onMouseLeave={handleCloseMenu} className="table-menu">
+                    <div
+                      ref={menuPopUpRef}
+                      onMouseLeave={handleCloseMenu}
+                      className="table-menu"
+                    >
                       {statusOption.map((e) => (
                         <div
                           onClick={() => handleStatusOption(id, e.id)}

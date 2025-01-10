@@ -2,6 +2,7 @@
 @use './sidebar.scss';
 @use './navbar.scss';
 @use '../color.scss';
+@use '../media.scss';
 
 $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 
@@ -11,11 +12,39 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 
 .dashboard-content {
   background-color: color.$offwhite;
-  margin-top: 5em;
-  margin-left: 300px;
-  padding: 3em;
-  position: relative;
   min-height: 100vh;
+  overflow-y: scroll;
+  padding: 2em 1.5em;
+  @include media.respond-to(lg){
+    padding: 3em;
+    margin-top: 5em;
+    margin-left: 300px;
+    position: relative;
+  }
+}
+
+.user-profile-content {
+  @include media.respond-to(lg) {
+    display: flex;
+    align-content: center;
+    gap: 3em;
+  }
+}
+
+.user-profile-extra {
+  display: flex;
+  gap: 3em;
+  margin-top: 2em;
+  @include media.respond-to(lg) {
+    margin-top: 0;
+    gap: 0;
+    align-content: center;
+    
+    div{
+      padding: 2em;
+      border-left: 2px solid color.$lightBlueTransparent;
+    }
+  }
 }
 
 .dashboard-heading {
@@ -28,33 +57,49 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
   font-size: 1.5rem;
 }
 
+.dashboard-heading-grid {
+  @include media.respond-to(lg){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 /** CARDS **/
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5em;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5em;
+  @include media.respond-to(lg){ 
+    gap: 1.5em;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .card {
   box-shadow: $dropShadow; 
   background-color: color.$white;
   padding: 2em;
-  margin: 1em 0;
+  @include media.respond-to(lg){ 
+    margin: 1em 0;
 
-  h2 {
-    color: color.$grey;
-    font-weight: 500;
-    font-family: "Work Sans", serif;
-    text-transform: uppercase;
-    font-size: 0.75rem;
   }
 
-  p {
-    color: color.$darkBlue;
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 1.5%;
-  }
+}
+
+.card h2 {
+  color: color.$grey;
+  font-weight: 500;
+  font-family: "Work Sans", serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.card p {
+  color: color.$darkBlue;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.5%;
 }
 
 /** PROFILE  **/
@@ -90,21 +135,27 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 }
 
 .profile-menu {
+overflow-x: scroll;
 display: flex;
-justify-content: space-between;
-gap: 1em;
-margin-top: 4em;
 color: #000;
-  .active {
-    border-bottom: 0.2em solid color.$teal;
-    color: color.$teal;
-  }
+align-items: end;
+@include media.respond-to(md) {
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 4em;
+}
+}
+
+.profile-menu .active {
+  border-bottom: 0.2em solid color.$teal;
+  color: color.$teal;
 }
 
 .profile-menu-item {
   padding: 2em;
   padding-bottom: 1em;
   cursor: pointer;
+  font-size: 0.875rem;
 }
 
 
@@ -112,6 +163,7 @@ color: #000;
 border-bottom: 1px solid rgba(33, 63, 125, 0.10);
 font-family: 'Work Sans';
 padding-top: 2em;
+padding-bottom: 2em;
 
 &:first-child{
  padding-top: 0;
@@ -119,7 +171,6 @@ padding-top: 2em;
 
 &:last-child {
   border-bottom: none;
-  padding-bottom: 2em;
 }
 }
 
@@ -127,6 +178,7 @@ padding-top: 2em;
   color: color.$lightBlue;
   font-size: 1rem;
   font-weight: 500;
+  line-height: 1em;
 }
 
 .profile-section h4 {
@@ -134,7 +186,7 @@ padding-top: 2em;
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 400;
-  line-height: 0.1em;
+  line-height: 1em;
 }
 
 .profile-section p {
@@ -145,6 +197,7 @@ padding-top: 2em;
 .hidden {
   display: none;
 }
+
 
 /** status **/
 

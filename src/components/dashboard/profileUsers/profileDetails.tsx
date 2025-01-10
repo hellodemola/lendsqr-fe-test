@@ -20,7 +20,7 @@ export default function ProfileDetails({
   isStatus,
 }: ProfileDetailsProps) {
   return (
-    <div>
+    <div className="profile-details">
       <h4>{title}</h4>
       {isStatus ? (
         <span
