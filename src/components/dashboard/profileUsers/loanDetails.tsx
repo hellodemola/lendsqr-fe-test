@@ -26,7 +26,7 @@ export default function LoanDetails({
                 text={e?.repayment_amount}
               />
 
-              <ProfileDetails title="Status" text={e?.status} />
+              <ProfileDetails title="Status" isStatus text={e?.status} />
             </div>
           ))}
         </div>

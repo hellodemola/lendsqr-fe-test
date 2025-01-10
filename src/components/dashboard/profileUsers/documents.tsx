@@ -14,16 +14,19 @@ export default function UserDocuments({
           <ProfileDetails
             title="Bank statement"
             text={currentUser?.documents?.bank_statement}
+            isStatus
           />
 
           <ProfileDetails
             title="Identification documents"
             text={currentUser?.documents?.identification}
+            isStatus
           />
 
           <ProfileDetails
             title="Proof of address"
             text={currentUser?.documents?.proof_of_address}
+            isStatus
           />
         </div>
       </div>
