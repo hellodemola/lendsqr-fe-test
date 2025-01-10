@@ -33,7 +33,7 @@ export default function DesktopNav() {
             <div className="avarter">
               <Image width={60} height={60} src="/profile.svg" alt="avater" />
             </div>
-            <div className="flex align-center" id="menu">
+            <div className="flex align-center gaps" id="menu">
               <p>Adedeji</p>
               <Image
                 width={30}
