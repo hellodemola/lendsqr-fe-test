@@ -79,10 +79,10 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
 .card {
   box-shadow: $dropShadow; 
   background-color: color.$white;
-  padding: 2em;
+  padding: 0.8em;
   @include media.respond-to(lg){ 
+    padding: 2em;
     margin: 1em 0;
-
   }
 
 }
@@ -119,7 +119,7 @@ $dropShadow: 0px 4px 4px color.$lightBlueTransparent;
   font-weight: 500;
   color: color.$lightBlue;
   font-size: 22px;
-  line-height: 0.3em;
+  line-height: 1.2;
 }
 
 .profile-container h3 {
