@@ -6,5 +6,5 @@ export const defaultValues: IDefaultValues = {
     username: "",
     date: "",
     phone: "",
-    status: undefined,
+    status: "",
   };

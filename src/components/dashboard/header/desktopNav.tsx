@@ -29,7 +29,7 @@ export default function DesktopNav() {
         <div className="menu-items">
           <Link href="#">Docs</Link>
           <Image width={30} height={30} src="/icons/bell.svg" alt="users" />
-          <div className="flex gap-6 align-center">
+          <div className="flex gaps align-center">
             <div className="avarter">
               <Image width={60} height={60} src="/profile.svg" alt="avater" />
             </div>

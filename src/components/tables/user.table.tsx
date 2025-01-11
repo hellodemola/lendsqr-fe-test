@@ -41,6 +41,11 @@ export default function UserTable({ users, handleFilter }: IUserTableProps) {
         </tr>
       </thead>
       <tbody>
+        {users?.length < 1 && (
+          <tr className="">
+            <td>No user found at this moment for this request</td>
+          </tr>
+        )}
         {users?.length > 0 &&
           users.map((user: IUserResp, index) => {
             const {

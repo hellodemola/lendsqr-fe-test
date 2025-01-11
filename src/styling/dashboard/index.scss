@@ -200,6 +200,22 @@ padding-bottom: 2em;
 }
 
 
+.filter-button-container {
+  button {
+    min-width: fit-content;
+    width: 10em;
+    margin: 0;
+    background-color: color.$red;
+  }
+  
+  @include media.respond-to(lg){
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}
+
+
 /** status **/
 
 .status {

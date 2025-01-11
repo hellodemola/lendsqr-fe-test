@@ -16,6 +16,13 @@ export default function UserFilter({
   handleFilter,
 }: hidePopupProps) {
   const [companies, setCompanies] = useState<ICompany>();
+  const [maxDate, setMaxDate] = useState("");
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split("T")[0];
+    setMaxDate(formattedDate);
+  }, []);
 
   useEffect(() => {
     getCompanies(setCompanies);
@@ -26,13 +33,22 @@ export default function UserFilter({
     defaultValues: defaultValues,
   });
 
-  const handleFilterUser = async (data: IDefaultValues) => {
+  const handleFilterUser = (data: IDefaultValues) => {
     handleFilter(data);
     hidePopup(false);
   };
 
+  const handleReset = () => {
+    handleFilter(undefined);
+    hidePopup(false);
+  };
+
   return (
-    <form className="inner-form" onSubmit={handleSubmit(handleFilterUser)}>
+    <form
+      className="inner-form"
+      onSubmit={handleSubmit(handleFilterUser)}
+      onReset={handleReset}
+    >
       <p>Organization</p>
       {companies && (
         <select className="form-select" {...register("organization")}>
@@ -49,7 +65,12 @@ export default function UserFilter({
       <p>Email</p>
       <TextInput type="email" {...register("email")} placeholder="email" />
       <p>Date</p>
-      <TextInput type="date" {...register("date")} placeholder="date" />
+      <TextInput
+        max={maxDate}
+        type="date"
+        {...register("date")}
+        placeholder="date"
+      />
       <p>Phone number</p>
       <TextInput
         type="phone"
@@ -58,6 +79,7 @@ export default function UserFilter({
       />
       <p>Status</p>
       <select className="form-select" {...register("status")}>
+        <option disabled>Select status</option>
         {userStatus.map((status: TStatus) => (
           <option key={status}>{status}</option>
         ))}

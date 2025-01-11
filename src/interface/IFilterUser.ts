@@ -7,5 +7,5 @@ export interface IFilterUserProps {
     email?: string,
     phone?: string,
     date?: string,
-    status?: TStatus,
+    status?: TStatus | string,
 }

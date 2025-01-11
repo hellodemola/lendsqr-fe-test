@@ -14,6 +14,7 @@ export default function Users() {
     handleFilter,
     userStats,
     isLoading,
+    isFilter,
   } = useGetUsers();
 
   const statsInfo = cardInfo(userStats);
@@ -40,6 +41,13 @@ export default function Users() {
               ))}
             </div>
             <div className="table-container">
+              {isFilter && (
+                <div className="filter-button-container">
+                  <button onClick={() => handleFilter(undefined)}>
+                    cancel filter
+                  </button>
+                </div>
+              )}
               <UserTable handleFilter={handleFilter} users={users} />
             </div>
             <Pagination pagination={pagination} />

@@ -23,9 +23,9 @@ const useGetUsers = () => {
     allUsers: 0,
   });
 
+  const [isFilter, setIsFilter] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(true);
+  const handleGetUser = () => {
     fetch(userUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -39,6 +39,12 @@ const useGetUsers = () => {
         console.log(error);
       })
       .finally(() => setIsLoading(false))
+  }
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    handleGetUser();
   }, []);
 
   useMemo(() => {
@@ -63,9 +69,13 @@ const useGetUsers = () => {
     setPageSize(Number(option.target.value));
   };
 
-  const handleFilter = (filterCriteria: IFilterUserProps) => {
-    // Filter data based on criteria
+  const handleFilter = (filterCriteria: IFilterUserProps | undefined) => {
+    if (!filterCriteria) {
+      setIsFilter(false)
+     return handleGetUser()
+    }
 const filteredData = users.filter(item => {
+  setIsFilter(true);
   return (
     (filterCriteria.organization
       ? item.organization.some(org => org.name === filterCriteria.organization)
@@ -98,6 +108,7 @@ setUsers(filteredData)
     userStats,
     currentPageData,
     isLoading,
+    isFilter,
     handleFilter,
     pagination: {
       handlePageChange,

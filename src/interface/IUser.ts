@@ -91,7 +91,7 @@ export interface CardsProps {
 
 export interface IUserTableProps {
   users: IUserResp[];
-  handleFilter: (e: IFilterUserProps) => void;
+  handleFilter: (e: IFilterUserProps | undefined) => void;
 }
 
 export interface IDefaultValues {
@@ -100,10 +100,10 @@ export interface IDefaultValues {
   username: string;
   date: string;
   phone: string;
-  status: TStatus | undefined;
+  status: TStatus | string;
 }
 
 export interface hidePopupProps {
   hidePopup: (e: boolean) => void;
-  handleFilter: (e: IFilterUserProps) => void;
+  handleFilter: (e: IFilterUserProps | undefined) => void;
 }
