@@ -15,14 +15,8 @@ export default function UserFilter({
   hidePopup,
   handleFilter,
 }: hidePopupProps) {
+  const maxDate = new Date().toISOString().split("T")[0];
   const [companies, setCompanies] = useState<ICompany>();
-  const [maxDate, setMaxDate] = useState("");
-
-  useEffect(() => {
-    const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
-    setMaxDate(formattedDate);
-  }, []);
 
   useEffect(() => {
     getCompanies(setCompanies);

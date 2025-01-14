@@ -1,50 +1,40 @@
 import { IFilterUserProps } from "@/interface/IFilterUser";
 import { IStats } from "@/interface/IStats";
 import IUserRes from "@/interface/IUser";
+import { handleGetUser } from "@/service/getUsers.api";
 import getUserStatistics from "@/utils/getUserStatistics";
+import handleOrgFilter from "@/utils/handleOrgFilter";
 import { saveCompany } from "@/utils/indexedDBQueries";
 import { useEffect, useMemo, useState } from "react";
 
-const userUrl = "/api/users";
-
-
+const userStatsDefaultValue = {
+  loanUsers: 0,
+  savingsUsers: 0,
+  activeUsers: 0,
+  allUsers: 0,
+}
 
 const useGetUsers = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
   const [totalPages, setTotalPage] = useState<number>(0);
   const [users, setUsers] = useState<IUserRes[]>([]);
-  const [organizations, setOrganization] = useState<string []>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [userStats, setUserStats] = useState<IStats>({
-    loanUsers: 0,
-    savingsUsers: 0,
-    activeUsers: 0,
-    allUsers: 0,
-  });
-
   const [isFilter, setIsFilter] = useState(false);
+  const [userStats, setUserStats] = useState<IStats>(userStatsDefaultValue);
 
-  const handleGetUser = () => {
-    fetch(userUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-        setTotalPage(Number(data?.length));
-        const stats = getUserStatistics(data);
-        setUserStats(stats);
-      })
-      .catch((error) => {
-        setUsers([]);
-        console.log(error);
-      })
-      .finally(() => setIsLoading(false))
+  const handleUpdates = (data: IUserRes[]) => {
+    setUsers(data);
+    setTotalPage(data?.length);
+    const stats = getUserStatistics(data);
+    setUserStats(stats);
   }
 
-
   useEffect(() => {
-    setIsLoading(true);
-    handleGetUser();
+    handleGetUser()
+    .then((data) =>  handleUpdates(data))
+    .catch(() => setUsers([]))
+    .finally(() => setIsLoading(false))
   }, []);
 
   useMemo(() => {
@@ -52,7 +42,6 @@ const useGetUsers = () => {
       const organizationArr = users.map((e) => e.organization.map((e) => e.name));
       const flatOrgArr = [...new Set(organizationArr.flat())]
       saveCompany(flatOrgArr);
-      setOrganization(flatOrgArr);
     }
   }, [users])
 
@@ -61,50 +50,20 @@ const useGetUsers = () => {
     currentPage * pageSize
   );
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
-
-  const handlePageOption = (option: React.ChangeEvent<HTMLSelectElement>) => {
-    setPageSize(Number(option.target.value));
-  };
-
+  const handlePageChange = (newPage: number) => setCurrentPage(newPage);
+  const handlePageOption = (option: React.ChangeEvent<HTMLSelectElement>) => setPageSize(Number(option.target.value));
   const handleFilter = (filterCriteria: IFilterUserProps | undefined) => {
     if (!filterCriteria) {
       setIsFilter(false)
      return handleGetUser()
     }
-const filteredData = users.filter(item => {
-  setIsFilter(true);
-  return (
-    (filterCriteria.organization
-      ? item.organization.some(org => org.name === filterCriteria.organization)
-      : true) &&
-    (filterCriteria.email
-      ? item.personal_information.email_address === filterCriteria.email
-      : true) &&
-    (filterCriteria.username
-      ? item.personal_information.username.toLowerCase() === filterCriteria.username.toLocaleLowerCase()
-      : true) &&
-    (filterCriteria.date
-      ? item.personal_information.joined_date === filterCriteria.date
-      : true) &&
-    (filterCriteria.phone
-      ? item.personal_information.phone_number === filterCriteria.phone
-      : true) &&
-    (filterCriteria.status
-      ? item.personal_information.status === filterCriteria.status
-      : true)
-  );
-});
-setUsers(filteredData)
-
-  }
+    setIsFilter(true);
+    const filteredData = handleOrgFilter(users, filterCriteria);
+    setUsers(filteredData)
+}
 
 
   return {
-    users,
-    organizations,
     userStats,
     currentPageData,
     isLoading,
