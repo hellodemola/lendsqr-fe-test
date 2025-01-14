@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Work_Sans, Roboto } from "next/font/google";
 import "../styling/global.scss";
+import ClaritySetup from "./clearitySetUp";
 
 const avenirNext = localFont({
   src: [
@@ -53,6 +54,7 @@ export default function RootLayout({
       lang="en"
       className={`${avenirNext.className} ${workSans.className} ${roboto.className}`}
     >
+      <ClaritySetup />
       <body>{children}</body>
     </html>
   );
