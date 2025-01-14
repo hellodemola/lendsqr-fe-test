@@ -36,8 +36,8 @@ export default function User() {
   };
 
   useEffect(() => {
-    getSingleUser(searchParams.user as string, setCurrentUser);
-  }, [searchParams.user]);
+    getSingleUser(searchParams.userId as string, setCurrentUser);
+  }, [searchParams.userId]);
 
   if (!currentUser)
     return (
@@ -55,7 +55,7 @@ export default function User() {
         </div>
         <div className="dashboard-heading">
           <h1>User not found</h1>
-          <p>User with ID: {searchParams.user} not found.</p>
+          <p>User with ID: {searchParams.userId} not found.</p>
         </div>
       </div>
     );
