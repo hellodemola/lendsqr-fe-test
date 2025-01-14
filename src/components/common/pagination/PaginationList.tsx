@@ -1,7 +1,7 @@
 import { IPaginationList } from "@/interface/IPagination";
 import createPaginationArray from "@/utils/createPaginationArr";
+import handlePagePagination from "@/utils/handlePagePagination";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function PaginationList({
   currentPage,
@@ -9,13 +9,8 @@ export default function PaginationList({
   totalPages,
   pageSize,
 }: IPaginationList) {
-  const [pageNumbers, setPageNumbers] = useState<number>(0);
-  const paginateArr = createPaginationArray(currentPage, pageNumbers);
-
-  useEffect(() => {
-    const avg = totalPages / pageSize;
-    setPageNumbers(Math.round(avg));
-  }, [pageSize, totalPages]);
+  const page = handlePagePagination(pageSize, totalPages, currentPage);
+  const paginateArr = createPaginationArray(currentPage, page.number);
 
   return (
     <div className="pagination">
@@ -50,7 +45,7 @@ export default function PaginationList({
       )}
       <button
         onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === pageNumbers}
+        disabled={page.isCurrentPage}
         className=" pagination-arrow-button"
       >
         <Image
