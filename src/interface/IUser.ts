@@ -91,7 +91,7 @@ export interface CardsProps {
 
 export interface IUserTableProps {
   users: IUserResp[];
-  handleFilter: (e: IFilterUserProps | undefined) => void;
+  handleFilter: (e: IFilterUserProps | undefined, users?: IUserResp[]) => void;
 }
 
 export interface IDefaultValues {
