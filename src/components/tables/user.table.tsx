@@ -12,13 +12,8 @@ export default function UserTable({ users, handleFilter }: IUserTableProps) {
     useUserTableMenu();
   const handleStatusOption = useViewUser(users);
   const [isFilterMenu, setIsFilterMenu] = useState(false);
-
-  const handleFilterState = () => {
-    setIsFilterMenu(!isFilterMenu);
-  };
-
+  const handleFilterState = () => setIsFilterMenu(!isFilterMenu);
   const popupRef = useClickOutside({ onClose: handleFilterState });
-
   const menuPopUpRef = useClickOutside({ onClose: handleCloseMenu });
 
   return (
