@@ -10,11 +10,11 @@ import { status } from "@/interface/IUserReducer";
 const useGetUsers = () => {
   const [data, dispatch] = useReducer(userReducer, intialState);
   const { users } = data;
-  const { handleAddUsers, handleUpdateStatus } = useUserAction(dispatch);
+  const actions = useUserAction(dispatch);
+  const { handleAddUsers, handleUpdateStatus } = actions
 
   const handleUserFunc = () => handleGetUser()
   .then((userData: IUserRes[]) => handleAddUsers(userData))
-  .catch((error) => console.log(error))
   .finally(() => handleUpdateStatus(status.isLoading, false))
   
   useEffect(() => {
@@ -32,7 +32,7 @@ const useGetUsers = () => {
 
   return {
     data,
-    dispatch
+    actions,
   };
 };
 

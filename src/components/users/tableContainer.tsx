@@ -12,10 +12,12 @@ export default function TableContainer({ data }: { data: IIntialState }) {
 
   const sliceData = (type: Array<IUserResp>) =>
     type.slice((currentPage - 1) * rowNumber, currentPage * rowNumber);
+
   const isFilter =
     stateStatus?.isFilter && filteredUsers && typeof filteredUsers !== null;
 
   const currentPageData = sliceData(isFilter ? filteredUsers : users);
+
   const totalPages = isFilter ? filteredUsers?.length : users.length;
 
   const handlePageOption = (e: React.ChangeEvent<HTMLSelectElement>) =>
